@@ -1,116 +1,253 @@
 /* ============================================================
-   RAITHA — FINAL CLEAN CSS (STABLE + RESPONSIVE)
+   RAITHA — FINAL UPDATED CSS (STABLE HEADER + RESPONSIVE)
    ============================================================ */
 
-/* ── RESET ───────────────────────────────────────── */
-*,
-*::before,
-*::after {
+/* RESET */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+:root {
+  --green: #2e7d32;
+  --green-light: #e8f5e9;
+  --green-mid: #4caf50;
+
+  --text: #1a1a1a;
+  --muted: #777;
+
+  --radius: 12px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
-  background: #f8fafc;
-  color: #0f172a;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* ── VARIABLES ───────────────────────────────────── */
-:root {
-  --green: #064e3b;
-  --green-mid: #10b981;
-  --green-light: #ecfdf5;
-
-  --text: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-
-  --radius: 16px;
-  --shadow: 0 10px 20px rgba(0,0,0,0.08);
+  font-family: "Inter", sans-serif;
+  background: #f4f6f9;
+  color: var(--text);
+  padding-top: 100px; /* updated for 2-row header */
 }
 
 /* ============================================================
-   HEADER (FIXED VERSION)
+   HEADER (FIXED + ZOOM SAFE)
    ============================================================ */
 
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
   z-index: 9999;
 
-  width: 100%;
-  min-height: 72px;
-
-  background: rgba(6, 78, 59, 0.95);
-  backdrop-filter: blur(12px);
-
-  display: flex;
-  align-items: center;
-
-  padding: 10px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
+/* CONTAINER */
 .header-inner {
-  width: 100%;
-  max-width: 1300px;
+  max-width: 1200px;
   margin: auto;
+  padding: 10px 20px;
 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* TOP ROW */
+.header-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0 20px;
-  gap: 16px;
+  gap: 12px;
 }
 
-/* Brand */
+/* BRAND */
 .brand {
-  font-size: 20px;
-  font-weight: 800;
-  color: white;
-  flex-shrink: 0;
-}
-
-/* Navigation */
-.nav {
   display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.nav a {
-  color: #d1fae5;
-  font-weight: 600;
-  padding: 8px 14px;
+.brand-name {
+  font-size: 20px;
+  font-weight: 900;
+  color: white;
+}
+
+.brand-tagline {
+  font-size: 10px;
+  color: #c8e6c9;
+}
+
+/* SEARCH */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.15);
+  border-radius: 30px;
+  padding: 6px 12px;
+  flex: 1;
+  max-width: 350px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: none;
+  color: white;
+  flex: 1;
+}
+
+.search-input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.search-btn {
+  background: white;
+  color: var(--green);
   border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* NAV ROW */
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap; /* KEY FIX */
+  justify-content: center;
+  gap: 8px;
+}
+
+.nav-tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
   transition: 0.2s;
 }
 
-.nav a:hover {
-  background: rgba(16,185,129,0.2);
+.nav-tab:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.nav-tab.active {
+  background: rgba(255,255,255,0.3);
   color: white;
 }
 
-/* Search */
-.search {
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.1);
-  border-radius: 40px;
-  padding: 6px 10px;
-  min-width: 200px;
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  background: linear-gradient(rgba(27,94,32,0.8), rgba(46,125,50,0.9)),
+    url('https://tse1.mm.bing.net/th?q=green+farm+india&w=1200');
+
+  background-size: cover;
+  background-position: center;
+
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
 }
 
-.search input {
-  border: none;
+.hero-title {
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.hero-sub {
+  margin-top: 10px;
+}
+
+/* ============================================================
+   GRID + CARD
+   ============================================================ */
+
+.crop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.crop-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+}
+
+.crop-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-name {
+  font-weight: 800;
+}
+
+.price-val {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.up { color: #4caf50; }
+.down { color: #e53935; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  background: #111827;
+  color: #ccc;
+  text-align: center;
+  padding: 30px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 120px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar {
+    max-width: 100%;
+  }
+
+  .nav-tabs {
+    justify-content: space-between;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-tab {
+    flex: 1;
+    text-align: center;
+    font-size: 13px;
+  }
+   }  border: none;
   outline: none;
   background: none;
   color: white;
