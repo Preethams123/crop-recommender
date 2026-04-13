@@ -1,5 +1,5 @@
 /* ============================================================
-   RAITHA — COMPLETE CSS (DESKTOP + MOBILE HEADER FIXED)
+   RAITHA — FINAL CLEAN CSS (STABLE + RESPONSIVE)
    ============================================================ */
 
 /* ── RESET ───────────────────────────────────────── */
@@ -9,6 +9,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -24,47 +28,62 @@ body {
   --green: #064e3b;
   --green-mid: #10b981;
   --green-light: #ecfdf5;
+
   --text: #0f172a;
   --muted: #64748b;
   --border: #e2e8f0;
+
   --radius: 16px;
   --shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
 /* ============================================================
-   DESKTOP HEADER
+   HEADER (FIXED VERSION)
    ============================================================ */
 
 .header {
   position: sticky;
   top: 0;
   z-index: 9999;
+
+  width: 100%;
+  min-height: 72px;
+
   background: rgba(6, 78, 59, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+
+  display: flex;
+  align-items: center;
+
   padding: 10px 0;
 }
 
 .header-inner {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1300px;
   margin: auto;
-  padding: 0 20px;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+  gap: 16px;
 }
 
 /* Brand */
 .brand {
-  color: white;
   font-size: 20px;
   font-weight: 800;
+  color: white;
+  flex-shrink: 0;
 }
 
-/* Nav */
+/* Navigation */
 .nav {
   display: flex;
-  gap: 16px;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .nav a {
@@ -87,34 +106,195 @@ body {
   background: rgba(255,255,255,0.1);
   border-radius: 40px;
   padding: 6px 10px;
+  min-width: 200px;
 }
 
 .search input {
   border: none;
-  background: none;
   outline: none;
+  background: none;
   color: white;
   padding: 6px;
+  width: 100%;
+}
+
+.search input::placeholder {
+  color: rgba(255,255,255,0.6);
 }
 
 .search button {
   background: var(--green-mid);
   color: white;
+  border: none;
   border-radius: 20px;
   padding: 6px 14px;
-  border: none;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* ============================================================
-   MOBILE HEADER
+   HERO
    ============================================================ */
 
-.mobile-header {
-  display: none;
+.hero {
+  padding: 120px 20px 80px;
+  text-align: center;
+  color: white;
+
+  background: linear-gradient(rgba(6,78,59,0.85), rgba(6,78,59,0.9)),
+    url("hero.jpg") center/cover no-repeat;
 }
 
-@media (max-width: 768px) {
+.hero h1 {
+  font-size: 48px;
+  font-weight: 900;
+}
 
+.hero p {
+  max-width: 600px;
+  margin: 20px auto;
+  color: #e2e8f0;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: white;
+  color: var(--green);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+
+.section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 20px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ============================================================
+   GRID + CARDS
+   ============================================================ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.up { color: #22c55e; }
+.down { color: #ef4444; }
+
+/* Badges */
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.badge.low {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge.medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: #020617;
+  color: #94a3b8;
+}
+
+/* ============================================================
+   RESPONSIVE FIXES
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .search {
+    width: 100%;
+  }
+   }
   .header {
     display: none;
   }
