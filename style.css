@@ -1,5 +1,5 @@
 /* ============================================================
-   RAITHA — FINAL UPDATED CSS (STABLE HEADER + RESPONSIVE)
+   RAITHA — FINAL STABLE CSS (HEADER FIXED + RESPONSIVE SAFE)
    ============================================================ */
 
 /* RESET */
@@ -9,27 +9,33 @@
   padding: 0;
 }
 
+/* VARIABLES */
 :root {
   --green: #2e7d32;
   --green-light: #e8f5e9;
   --green-mid: #4caf50;
 
   --text: #1a1a1a;
-  --muted: #777;
+  --text-muted: #777;
+
+  --border: #d0d7de;
 
   --radius: 12px;
   --shadow: 0 4px 12px rgba(0,0,0,0.12);
+
+  --header-h: 72px;
 }
 
+/* BASE */
 body {
   font-family: "Inter", sans-serif;
   background: #f4f6f9;
   color: var(--text);
-  padding-top: 100px; /* updated for 2-row header */
+  padding-top: var(--header-h);
 }
 
 /* ============================================================
-   HEADER (FIXED + ZOOM SAFE)
+   HEADER (FIXED WITHOUT BREAKING YOUR DESIGN)
    ============================================================ */
 
 .header {
@@ -38,39 +44,38 @@ body {
   left: 0;
   right: 0;
 
+  height: auto; /* FIXED */
+  min-height: var(--header-h);
+
   background: linear-gradient(135deg, #1b5e20, #2e7d32);
   z-index: 9999;
 
   box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
-/* CONTAINER */
+/* MAIN FLEX */
 .header-inner {
   max-width: 1200px;
-  margin: auto;
-  padding: 10px 20px;
+  margin: 0 auto;
 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* TOP ROW */
-.header-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
+
+  padding: 8px 16px;
+  flex-wrap: wrap; /* 🔥 KEY FIX */
 }
 
 /* BRAND */
 .brand {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .brand-name {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   color: white;
 }
@@ -80,15 +85,46 @@ body {
   color: #c8e6c9;
 }
 
+/* NAV */
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap; /* 🔥 FIX */
+}
+
+.nav-tab {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.nav-tab:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.nav-tab.active {
+  background: rgba(255,255,255,0.3);
+}
+
 /* SEARCH */
 .search-bar {
+  margin-left: auto;
+
   display: flex;
   align-items: center;
+
   background: rgba(255,255,255,0.15);
   border-radius: 30px;
-  padding: 6px 12px;
+
+  padding: 6px 10px;
+
   flex: 1;
-  max-width: 350px;
+  max-width: 260px;
+  min-width: 150px;
 }
 
 .search-input {
@@ -110,32 +146,6 @@ body {
   padding: 5px 12px;
   font-size: 13px;
   font-weight: 700;
-}
-
-/* NAV ROW */
-.nav-tabs {
-  display: flex;
-  flex-wrap: wrap; /* KEY FIX */
-  justify-content: center;
-  gap: 8px;
-}
-
-.nav-tab {
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.9);
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.nav-tab:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-.nav-tab.active {
-  background: rgba(255,255,255,0.3);
-  color: white;
 }
 
 /* ============================================================
@@ -169,7 +179,7 @@ body {
 
 .crop-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -214,26 +224,35 @@ body {
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE (SAFE FIXES ONLY)
    ============================================================ */
 
 @media (max-width: 768px) {
 
   body {
-    padding-top: 120px;
+    padding-top: 110px;
   }
 
-  .header-top {
+  .header-inner {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .search-bar {
-    max-width: 100%;
-  }
-
   .nav-tabs {
     justify-content: space-between;
+  }
+
+  .search-bar {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .brand-name {
+    font-size: 18px;
   }
 
   .hero-title {
@@ -242,598 +261,15 @@ body {
 }
 
 @media (max-width: 480px) {
+
   .nav-tab {
     flex: 1;
     text-align: center;
     font-size: 13px;
   }
-   }  border: none;
-  outline: none;
-  background: none;
-  color: white;
-  padding: 6px;
-  width: 100%;
-}
 
-.search input::placeholder {
-  color: rgba(255,255,255,0.6);
-}
-
-.search button {
-  background: var(--green-mid);
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-
-.hero {
-  padding: 120px 20px 80px;
-  text-align: center;
-  color: white;
-
-  background: linear-gradient(rgba(6,78,59,0.85), rgba(6,78,59,0.9)),
-    url("hero.jpg") center/cover no-repeat;
-}
-
-.hero h1 {
-  font-size: 48px;
-  font-weight: 900;
-}
-
-.hero p {
-  max-width: 600px;
-  margin: 20px auto;
-  color: #e2e8f0;
-}
-
-/* Buttons */
-.btn {
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background: white;
-  color: var(--green);
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-}
-
-/* ============================================================
-   SECTION
-   ============================================================ */
-
-.section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 50px 20px;
-}
-
-.section-title {
-  font-size: 28px;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* ============================================================
-   GRID + CARDS
-   ============================================================ */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 16px;
-}
-
-.card-title {
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.price {
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.up { color: #22c55e; }
-.down { color: #ef4444; }
-
-/* Badges */
-.badge {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.badge.low {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.badge.medium {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.badge.high {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-
-.footer {
-  text-align: center;
-  padding: 30px;
-  background: #020617;
-  color: #94a3b8;
-}
-
-/* ============================================================
-   RESPONSIVE FIXES
-   ============================================================ */
-
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .nav {
-    justify-content: center;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .search {
-    width: 100%;
+  .search-btn {
+    font-size: 12px;
+    padding: 5px 10px;
   }
    }
-  .header {
-    display: none;
-  }
-
-  .mobile-header {
-    display: flex;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-
-    background: rgba(6, 78, 59, 0.95);
-    backdrop-filter: blur(10px);
-
-    height: 60px;
-    padding: 0 16px;
-
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .mobile-brand {
-    color: white;
-    font-size: 18px;
-    font-weight: 800;
-  }
-
-  .mobile-icon {
-    font-size: 22px;
-    color: white;
-    cursor: pointer;
-  }
-
-  /* Drawer Menu */
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 75%;
-    height: 100vh;
-
-    background: var(--green);
-    color: white;
-
-    padding: 30px 20px;
-    transition: 0.3s;
-
-    z-index: 10000;
-  }
-
-  .mobile-menu.open {
-    left: 0;
-  }
-
-  .mobile-menu a {
-    display: block;
-    padding: 14px 0;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  /* Overlay */
-  .menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    display: none;
-    z-index: 9999;
-  }
-
-  .menu-overlay.show {
-    display: block;
-  }
-
-  /* Search Overlay */
-  .mobile-search {
-    position: fixed;
-    top: -100%;
-    left: 0;
-    right: 0;
-
-    background: white;
-    padding: 20px;
-
-    transition: 0.3s;
-    z-index: 10000;
-  }
-
-  .mobile-search.open {
-    top: 0;
-  }
-
-  .mobile-search input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-  }
-}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-
-.hero {
-  padding: 120px 20px 80px;
-  text-align: center;
-  color: white;
-
-  background: linear-gradient(rgba(6,78,59,0.85), rgba(6,78,59,0.9)),
-    url("hero.jpg") center/cover;
-}
-
-.hero h1 {
-  font-size: 48px;
-  font-weight: 900;
-}
-
-.hero p {
-  max-width: 600px;
-  margin: 20px auto;
-}
-
-/* Buttons */
-.btn {
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: white;
-  color: var(--green);
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-}
-
-/* ============================================================
-   SECTION
-   ============================================================ */
-
-.section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 50px 20px;
-}
-
-.section-title {
-  font-size: 28px;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* ============================================================
-   GRID + CARD
-   ============================================================ */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 16px;
-}
-
-.card-title {
-  font-weight: 700;
-}
-
-.price {
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.up { color: #22c55e; }
-.down { color: #ef4444; }
-
-/* Badges */
-.badge {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.badge.low { background: #dcfce7; color: #166534; }
-.badge.medium { background: #fef3c7; color: #92400e; }
-.badge.high { background: #fee2e2; color: #991b1b; }
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-
-.footer {
-  text-align: center;
-  padding: 30px;
-  background: #020617;
-  color: #94a3b8;
-}  padding: 6px;
-  width: 100%;
-}
-
-.search input::placeholder {
-  color: rgba(255,255,255,0.6);
-}
-
-.search button {
-  background: var(--green-mid);
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-
-.hero {
-  padding: 120px 20px 80px;
-  text-align: center;
-  color: white;
-
-  background: linear-gradient(rgba(6,78,59,0.85), rgba(6,78,59,0.9)),
-    url("hero.jpg") center/cover no-repeat;
-}
-
-.hero h1 {
-  font-size: 48px;
-  font-weight: 900;
-}
-
-.hero p {
-  max-width: 600px;
-  margin: 20px auto;
-  color: #e2e8f0;
-}
-
-/* Buttons */
-.btn {
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background: white;
-  color: var(--green);
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-}
-
-/* ============================================================
-   SECTION
-   ============================================================ */
-
-.section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 50px 20px;
-}
-
-.section-title {
-  font-size: 28px;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* ============================================================
-   GRID + CARDS
-   ============================================================ */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-.card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 16px;
-}
-
-.card-title {
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.price {
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.up { color: #22c55e; }
-.down { color: #ef4444; }
-
-/* Badges */
-.badge {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.badge.low {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.badge.medium {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.badge.high {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-
-.footer {
-  text-align: center;
-  padding: 30px;
-  background: #020617;
-  color: #94a3b8;
-}
-
-/* ============================================================
-   RESPONSIVE FIXES
-   ============================================================ */
-
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .nav {
-    justify-content: center;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .search {
-    width: 100%;
-  }
-}
