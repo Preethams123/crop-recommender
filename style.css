@@ -1,5 +1,5 @@
 /* ============================================================
-   RAITHA — FINAL CLEAN CSS (STABLE + RESPONSIVE)
+   RAITHA — COMPLETE CSS (DESKTOP + MOBILE HEADER FIXED)
    ============================================================ */
 
 /* ── RESET ───────────────────────────────────────── */
@@ -9,10 +9,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -28,62 +24,47 @@ body {
   --green: #064e3b;
   --green-mid: #10b981;
   --green-light: #ecfdf5;
-
   --text: #0f172a;
   --muted: #64748b;
   --border: #e2e8f0;
-
   --radius: 16px;
   --shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
 /* ============================================================
-   HEADER (FIXED VERSION)
+   DESKTOP HEADER
    ============================================================ */
 
 .header {
   position: sticky;
   top: 0;
   z-index: 9999;
-
-  width: 100%;
-  min-height: 72px;
-
   background: rgba(6, 78, 59, 0.95);
-  backdrop-filter: blur(12px);
-
-  display: flex;
-  align-items: center;
-
+  backdrop-filter: blur(10px);
   padding: 10px 0;
 }
 
 .header-inner {
-  width: 100%;
-  max-width: 1300px;
+  max-width: 1200px;
   margin: auto;
+  padding: 0 20px;
 
   display: flex;
-  align-items: center;
   justify-content: space-between;
-
-  padding: 0 20px;
-  gap: 16px;
+  align-items: center;
 }
 
 /* Brand */
 .brand {
+  color: white;
   font-size: 20px;
   font-weight: 800;
-  color: white;
-  flex-shrink: 0;
 }
 
-/* Navigation */
+/* Nav */
 .nav {
   display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .nav a {
@@ -106,15 +87,259 @@ body {
   background: rgba(255,255,255,0.1);
   border-radius: 40px;
   padding: 6px 10px;
-  min-width: 200px;
 }
 
 .search input {
   border: none;
-  outline: none;
   background: none;
+  outline: none;
   color: white;
   padding: 6px;
+}
+
+.search button {
+  background: var(--green-mid);
+  color: white;
+  border-radius: 20px;
+  padding: 6px 14px;
+  border: none;
+}
+
+/* ============================================================
+   MOBILE HEADER
+   ============================================================ */
+
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .header {
+    display: none;
+  }
+
+  .mobile-header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    background: rgba(6, 78, 59, 0.95);
+    backdrop-filter: blur(10px);
+
+    height: 60px;
+    padding: 0 16px;
+
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-brand {
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .mobile-icon {
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Drawer Menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 75%;
+    height: 100vh;
+
+    background: var(--green);
+    color: white;
+
+    padding: 30px 20px;
+    transition: 0.3s;
+
+    z-index: 10000;
+  }
+
+  .mobile-menu.open {
+    left: 0;
+  }
+
+  .mobile-menu a {
+    display: block;
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* Overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 9999;
+  }
+
+  .menu-overlay.show {
+    display: block;
+  }
+
+  /* Search Overlay */
+  .mobile-search {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+
+    background: white;
+    padding: 20px;
+
+    transition: 0.3s;
+    z-index: 10000;
+  }
+
+  .mobile-search.open {
+    top: 0;
+  }
+
+  .mobile-search input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  padding: 120px 20px 80px;
+  text-align: center;
+  color: white;
+
+  background: linear-gradient(rgba(6,78,59,0.85), rgba(6,78,59,0.9)),
+    url("hero.jpg") center/cover;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: white;
+  color: var(--green);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+
+.section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 20px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ============================================================
+   GRID + CARD
+   ============================================================ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-title {
+  font-weight: 700;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.up { color: #22c55e; }
+.down { color: #ef4444; }
+
+/* Badges */
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.badge.low { background: #dcfce7; color: #166534; }
+.badge.medium { background: #fef3c7; color: #92400e; }
+.badge.high { background: #fee2e2; color: #991b1b; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: #020617;
+  color: #94a3b8;
+}  padding: 6px;
   width: 100%;
 }
 
